@@ -106,11 +106,11 @@ function App() {
         }
         return resp.json()
       })
-      .then((updatedQuestion) => {
+      .then((newCorrectIndex) => {
         // Update state to reflect the change
         setPage((currentQuestions) =>
           currentQuestions.map((question) =>
-            question.id === id ? { ...question, correctIndex: updatedQuestion.correctIndex } : question
+            question.id === id ? { ...question, correctIndex: newCorrectIndex.correctIndex } : question
           )
         )
       })

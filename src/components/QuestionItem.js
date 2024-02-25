@@ -8,8 +8,9 @@ function QuestionItem({ question, onDelete, onCorrectIndexChange }) {
       {answer}
     </option>
   ))
-  function handleChange(event) {
-    onCorrectIndexChange(id, event.target.value)
+  function handleChange(e) {
+    const newCorrectIndex = e.target.value
+    onCorrectIndexChange(id, newCorrectIndex)
   }
 
 
