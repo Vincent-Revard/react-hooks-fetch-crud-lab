@@ -1,17 +1,17 @@
-import { v4 as uuidv4 } from "uuid"
+// import { v4 as uuidv4 } from "uuid"
 
 function QuestionItem({ question, onDelete, onCorrectIndexChange }) {
   const { id, prompt, answers, correctIndex } = question
 
   const options = answers.map((answer, index) => (
-    <option key={uuidv4()} value={index}>
+    <option key={index} value={index}>
       {answer}
     </option>
   ))
   function handleChange(event) {
     onCorrectIndexChange(id, event.target.value)
   }
-  
+
 
   return (
     <li>
