@@ -2,8 +2,7 @@
 import QuestionItem from "./QuestionItem"
 
 function QuestionList({ page , onDelete , onCorrectIndexChange}) {
-  const pagesMapped = () => {
-    return page.map(pageObj => (
+  const pagesMapped = page.map(pageObj => (
       <QuestionItem
         key={pageObj.id} 
         question={pageObj}
@@ -11,13 +10,13 @@ function QuestionList({ page , onDelete , onCorrectIndexChange}) {
         onCorrectIndexChange={onCorrectIndexChange}
       />
     ))
-  }
+
   
 
   return (
     <section>
       <h1>Quiz Questions</h1>
-      <ul>{pagesMapped()}</ul>
+      <ul>{pagesMapped}</ul>
     </section>
   );
 }

@@ -9,8 +9,7 @@ function App() {
 
   const [page, setPage] = useState([])
   const [currentPage, setCurrentPage] = useState('List')
-  const url = "http://localhost:4000/questions"
-  console.log(page)
+  const url = "http://localhost:4000/questions/"
 
   const onChangePage = (e) => {
     e.target.textContent === 'New Question'? setCurrentPage('Form') : setCurrentPage('List')
@@ -89,15 +88,16 @@ function App() {
       .catch((err) => console.error(err))
   }
 
-  const onCorrectIndexChange = (id, correctIndex) => {
+  const onCorrectIndexChange = (id, newCorrectIndex) => {
     // Update on the server
+    console.log(typeof newCorrectIndex)
     fetch(`http://localhost:4000/questions/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "correctIndex": `${correctIndex}`
+        "correctIndex": `${newCorrectIndex}`
       }),
     })
       .then((resp) => {
@@ -106,15 +106,14 @@ function App() {
         }
         return resp.json()
       })
-      .then((newCorrectIndex) => {
+      .then((newUpdatedQuestion) => {
         // Update state to reflect the change
-        setPage((currentQuestions) =>
-          currentQuestions.map((question) =>
-            question.id === id ? { ...question, correctIndex: newCorrectIndex.correctIndex } : question
+        setPage(page.map((question) =>
+            question.id === id ? newUpdatedQuestion : question
           )
         )
       })
-      .catch((err) => console.error(err))
+      .catch((err) => console.error(err.message))
   }
 
   return (
