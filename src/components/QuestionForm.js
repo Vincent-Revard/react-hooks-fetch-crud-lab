@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react"
+// import { object, string, number } from 'yup'
 
-function QuestionForm(props) {
+function QuestionForm({ addQuestion }) {
+  // const [error, setError] = useState("")
   const [formData, setFormData] = useState({
     prompt: "",
     answer1: "",
@@ -8,19 +10,80 @@ function QuestionForm(props) {
     answer3: "",
     answer4: "",
     correctIndex: 0,
-  });
+  })
+
+  // const url = "http://localhost:4000/questions"
+
+  // const questionSchema = object().shape({
+  //   prompt: string().required('prompt is required!'),
+  //   answer1: string().required('answer1 is required!'),
+  //   answer2: string().required('answer2 is required!'),
+  //   answer3: string().required('answer3 is required!'),
+  //   answer4: string().required('answer4 is required!'),
+  //   correctIndex: number().required('Correct Answer is required!')
+  // })
 
   function handleChange(event) {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
-    });
+    })
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
-    console.log(formData);
+    event.preventDefault()
+
+
+        // questionSchema.validate(formData)
+            addQuestion(formData)
+          // .then(validFormData => {
+          //   fetch(url, {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json"
+          //     },
+          //     body: JSON.stringify({
+          //       prompt: validFormData.prompt,
+          //       answers: [
+          //         validFormData.answer1, 
+          //         validFormData.answer2, 
+          //         validFormData.answer3, 
+          //         validFormData.answer4],
+          //       correctIndex: validFormData.correctIndex
+          //     })
+          //   })
+          //     .then(resp => {
+          //       if (!resp.ok) {
+          //         throw new Error("Failed to fetch because server is not running")
+          //       }
+          //       return resp.json()
+          //     })
+              // .then(newQuestion => {
+              //   console.log("New Question added:", newQuestion)
+
+                // Clear the form data
+                setFormData({
+                  prompt: "",
+                  answer1: "",
+                  answer2: "",
+                  answer3: "",
+                  answer4: "",
+                  correctIndex: 0,
+                })
+
+                // Clear any previous errors
+              //   setError("")
+              // })
+              // .catch(error => {
+              //   setError(error.message)
+              //   setTimeout(() => setError(""), 5000)
+              // })
+          // })
+          // .catch(validationError => {
+          //   setError(validationError.message)
+          // })
   }
+
 
   return (
     <section>
@@ -87,7 +150,7 @@ function QuestionForm(props) {
         <button type="submit">Add Question</button>
       </form>
     </section>
-  );
+  )
 }
 
-export default QuestionForm;
+export default QuestionForm

@@ -1,13 +1,16 @@
-import React from "react";
+import { v4 as uuidv4 } from "uuid"
 
-function QuestionItem({ question }) {
-  const { id, prompt, answers, correctIndex } = question;
+function QuestionItem({ question, onDelete, onCorrectIndexChange }) {
+  const { id, prompt, answers, correctIndex } = question
 
   const options = answers.map((answer, index) => (
-    <option key={index} value={index}>
+    <option key={uuidv4()} value={index}>
       {answer}
     </option>
-  ));
+  ))
+  function handleChange(event) {
+    onCorrectIndexChange(id, event.target.value)
+  }
 
   return (
     <li>
@@ -15,11 +18,11 @@ function QuestionItem({ question }) {
       <h5>Prompt: {prompt}</h5>
       <label>
         Correct Answer:
-        <select defaultValue={correctIndex}>{options}</select>
+        <select value={correctIndex} onChange={handleChange}>{options}</select>
       </label>
-      <button>Delete Question</button>
+      <button onClick={onDelete}>Delete Question</button>
     </li>
-  );
+  )
 }
 
-export default QuestionItem;
+export default QuestionItem
