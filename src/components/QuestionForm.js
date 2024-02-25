@@ -33,7 +33,7 @@ function QuestionForm({ addQuestion }) {
   function handleSubmit(event) {
     event.preventDefault()
 
-
+//! Lab did not like validation 
         // questionSchema.validate(formData)
             addQuestion(formData)
           // .then(validFormData => {

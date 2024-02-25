@@ -12,13 +12,14 @@ function App() {
   console.log(page)
 
   const onChangePage = (e) => {
-    if(e.target.textContent === 'New Question') {
-      setCurrentPage('Form')
-    } else {
-    setCurrentPage('List')
-    }
+    e.target.textContent === 'New Question'? setCurrentPage('Form') : setCurrentPage('List')
+    // if(e.target.textContent === 'New Question') {
+    //   setCurrentPage('Form')
+    // } else {
+    // setCurrentPage('List')
+    // }
   }
-
+  
 
   useEffect(() => {
     const fetchQuestions = () => {
@@ -31,7 +32,7 @@ function App() {
       .catch((err) => console.log(err))
     } 
     fetchQuestions()
-  }, [currentPage])
+  }, [])
 
 
 
