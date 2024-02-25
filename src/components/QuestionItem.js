@@ -11,6 +11,7 @@ function QuestionItem({ question, onDelete, onCorrectIndexChange }) {
   function handleChange(event) {
     onCorrectIndexChange(id, event.target.value)
   }
+  
 
   return (
     <li>

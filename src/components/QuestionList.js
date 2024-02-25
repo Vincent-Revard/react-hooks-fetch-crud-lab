@@ -12,6 +12,7 @@ function QuestionList({ page , onDelete , onCorrectIndexChange}) {
       />
     ))
   }
+  
 
   return (
     <section>
